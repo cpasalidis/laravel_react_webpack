@@ -1,3 +1,5 @@
+This project will handle cards each card is a title/imgurl
+
 changed .env to connect to sqlite3 instead of mysql
 I guess the .env file is now the only place to configure it.
 
