@@ -1,0 +1,13 @@
+changed .env to connect to sqlite3 instead of mysql
+I guess the .env file is now the only place to configure it.
+
+Doc: https://laravel.com/docs/5.2/database
+
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+
+Thanks a lot Jaime.
+
+Installed php7 to /usr/local/bin and made a special .sh to have it in PATH, before the default php5.5 Installed composer on /usr/local/bin/ and used it to install laravel and to create a new project.
+See the https://code.tutsplus.com/tutorials/build-a-react-app-with-laravel-restful-backend-part-1-laravel-5-api--cms-29442
+
