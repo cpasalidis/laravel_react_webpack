@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {cards} from '../actions';
-
+import {Button,Form,FormGroup,Input} from 'reactstrap';
 
 
 class Card extends Component {
@@ -41,17 +41,18 @@ class Card extends Component {
         <div>
           <h2>Welcome to Card!!</h2>
           <hr />
-  
         <h3>Add new card</h3>
-        <form onSubmit={this.submitCard}>
-          <input
+        <Form inline onSubmit={this.submitCard}>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Input
             value={this.state.text}
             placeholder="Enter card here..."
             onChange={(e) => this.setState({text: e.target.value})}
             required />
-          <input type="submit" value="Save Card" />
-          <button onClick={this.resetForm}>Reset</button>
-        </form>
+          <Button color="success" type="submit"> Save Card </Button>
+          <Button onClick={this.resetForm}>Reset</Button>
+          </FormGroup>
+        </Form>
 
           <h3>Cards</h3>
           <table>
@@ -59,8 +60,8 @@ class Card extends Component {
               {this.props.cards.map((card,id) => (
                 <tr key={"card_"+id} >
                   <td>{card.text}</td>
-                  <td><button onClick={() => this.selectForEdit(id)}>edit</button></td>
-                  <td><button onClick={()=>this.props.deleteCard(id)}>delete</button></td>
+                  <td><Button color="success" onClick={() => this.selectForEdit(id)}>edit</Button></td>
+                  <td><Button color="danger" onClick={()=>this.props.deleteCard(id)}>delete</Button></td>
                 </tr>
               ))}
             </tbody>
