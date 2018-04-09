@@ -1,5 +1,6 @@
 This project will handle cards each card is a title/imgurl
 
+Added on actions/cards.js the getHeaders() fuction which handles csrf, so now the react app is shown on my browser
 Installed and configured babel preset react app using https://www.npmjs.com/package/babel-preset-react-app
 Put css to css directory based on https://laracasts.com/discuss/channels/laravel/best-way-to-use-custom-css-in-laravel
 Used https://dev.to/devtalhaakbar/reactjs-and-laravel---running-through-a-basic-setup---part-1-ei8
