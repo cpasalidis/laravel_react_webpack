@@ -48812,10 +48812,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addCard", function() { return addCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCard", function() { return updateCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCard", function() { return deleteCard; });
+
+var getHeaders = function getHeaders() {
+  var token = document.head.querySelector('meta[name="csrf-token"]').content;
+  var headers = {
+    "Content-Type": "application/json",
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-Token': token
+  };
+  return headers;
+};
+
 var fetchCards = function fetchCards() {
   return function (dispatch) {
-    var headers = { "Content-Type": "application/json" };
-    return fetch("/api/cards/", { headers: headers }).then(function (res) {
+    var headers = getHeaders();
+    return fetch("/api/cards/", { headers: headers, credentials: 'same-origin' }).then(function (res) {
       return res.json();
     }).then(function (cards) {
       return dispatch({
@@ -48827,10 +48838,10 @@ var fetchCards = function fetchCards() {
 };
 
 var addCard = function addCard(text) {
-  var headers = { "Content-Type": "application/json" };
+  var headers = getHeaders();
   var body = JSON.stringify({ text: text });
   return function (dispatch) {
-    return fetch("/api/cards/", { headers: headers, method: "POST", body: body }).then(function (res) {
+    return fetch("/api/cards/", { headers: headers, credentials: 'same-origin', method: "POST", body: body }).then(function (res) {
       return res.json();
     }).then(function (card) {
       return dispatch({
@@ -48844,11 +48855,11 @@ var addCard = function addCard(text) {
 var updateCard = function updateCard(index, text) {
   return function (dispatch, getState) {
 
-    var headers = { "Content-Type": "application/json" };
+    var headers = getHeaders();
     var body = JSON.stringify({ text: text });
     var cardId = getState().cards[index].id;
 
-    return fetch("/api/notes/" + cardId + "/", { headers: headers, method: "PUT", body: body }).then(function (res) {
+    return fetch("/api/notes/" + cardId + "/", { headers: headers, credentials: 'same-origin', method: "PUT", body: body }).then(function (res) {
       return res.json();
     }).then(function (card) {
       return dispatch({
@@ -48863,10 +48874,10 @@ var updateCard = function updateCard(index, text) {
 var deleteCard = function deleteCard(index) {
   return function (dispatch, getState) {
 
-    var headers = { "Content-Type": "application/json" };
+    var headers = getHeaders();
     var cardId = getState().cards[index].id;
 
-    return fetch("/api/cards/" + cardId + "/", { headers: headers, method: "DELETE" }).then(function (res) {
+    return fetch("/api/cards/" + cardId + "/", { headers: headers, credentials: 'same-origin', method: "DELETE" }).then(function (res) {
       if (res.ok) {
         return dispatch({
           type: 'DELETE_CARD',
@@ -48951,7 +48962,7 @@ var NotFound = function NotFound() {
 
 
 
-var logger = __WEBPACK_IMPORTED_MODULE_4_redux_logger___default()();
+var logger = Object(__WEBPACK_IMPORTED_MODULE_4_redux_logger__["createLogger"])();
 var store = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["createStore"])(__WEBPACK_IMPORTED_MODULE_5__reducers__["a" /* default */], Object(__WEBPACK_IMPORTED_MODULE_2_redux_devtools_extension__["composeWithDevTools"])(Object(__WEBPACK_IMPORTED_MODULE_0_redux__["applyMiddleware"])(__WEBPACK_IMPORTED_MODULE_1_redux_thunk___default.a, __WEBPACK_IMPORTED_MODULE_3_redux_promise___default.a, logger)));
 
 /* harmony default export */ __webpack_exports__["a"] = (store);

@@ -1,7 +1,18 @@
+
+const getHeaders = () => {
+  var token = document.head.querySelector('meta[name="csrf-token"]').content;
+  let headers = {
+    "Content-Type": "application/json",
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-Token':token
+  };
+  return headers;
+}
+
 export const fetchCards = () => {
   return dispatch => {
-    let headers = {"Content-Type": "application/json"};
-    return fetch("/api/cards/", {headers, })
+    let headers = getHeaders();
+    return fetch("/api/cards/", {headers,credentials: 'same-origin' })
       .then(res => res.json())
       .then(cards => {
         return dispatch({
@@ -13,10 +24,10 @@ export const fetchCards = () => {
 }
 
 export const addCard = text => {
-  let headers = {"Content-Type": "application/json"};
+  let headers = getHeaders();
   let body = JSON.stringify({text, });
   return dispatch => {
-  return fetch("/api/cards/", {headers, method: "POST", body})
+  return fetch("/api/cards/", {headers,credentials: 'same-origin', method: "POST", body})
   .then(res => res.json())
   .then(card => {
     return dispatch({
@@ -30,11 +41,11 @@ export const addCard = text => {
   export const updateCard = (index, text) => {
     return (dispatch, getState) => {
 
-      let headers = {"Content-Type": "application/json"};
+      let headers = getHeaders();
       let body = JSON.stringify({text, });
       let cardId = getState().cards[index].id;
   
-      return fetch(`/api/notes/${cardId}/`, {headers, method: "PUT", body})
+      return fetch(`/api/notes/${cardId}/`, {headers,credentials: 'same-origin', method: "PUT", body})
         .then(res => res.json())
         .then(card => {
           return dispatch({
@@ -49,10 +60,10 @@ export const addCard = text => {
 export const deleteCard = index => {
   return (dispatch, getState) => {
 
-    let headers = {"Content-Type": "application/json"};
+    let headers = getHeaders();
     let cardId = getState().cards[index].id;
 
-    return fetch(`/api/cards/${cardId}/`, {headers, method: "DELETE"})
+    return fetch(`/api/cards/${cardId}/`, {headers, credentials: 'same-origin',method: "DELETE"})
       .then(res => {
         if (res.ok) {
           return dispatch({
