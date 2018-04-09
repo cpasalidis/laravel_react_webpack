@@ -1,5 +1,7 @@
 This project will handle cards each card is a title/imgurl
 
+Installed and configured babel preset react app using https://www.npmjs.com/package/babel-preset-react-app
+Put css to css directory based on https://laracasts.com/discuss/channels/laravel/best-way-to-use-custom-css-in-laravel
 Used https://dev.to/devtalhaakbar/reactjs-and-laravel---running-through-a-basic-setup---part-1-ei8
 to make react app files, look similar to regular react applications. And also to use boostrap4/reactstrap/popper for gui components
 
@@ -17,6 +19,7 @@ Installed php7 to /usr/local/bin and made a special .sh to have it in PATH, befo
 See the https://code.tutsplus.com/tutorials/build-a-react-app-with-laravel-restful-backend-part-1-laravel-5-api--cms-29442
 
 Steps
+6. Add babel-preset-react-app to package.json and create .babelrc
 5. Modify react skeleton to be similar to regular react apps
 4.1 create api served from php, use postman or curl to test it
 4. using laravels artisan, create php skeleton and on it react skeleton

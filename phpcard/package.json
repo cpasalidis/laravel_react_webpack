@@ -12,13 +12,15 @@
   "devDependencies": {
     "axios": "^0.18",
     "babel-preset-react": "^6.23.0",
+    "babel-preset-react-app": "^3.1.1",
     "bootstrap": "^4.0.0",
     "cross-env": "^5.1",
     "laravel-mix": "^2.0",
     "lodash": "^4.17.4",
     "popper.js": "^1.12",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "redux-devtools-extension": "^2.13.2"
   },
   "dependencies": {
     "react-redux": "^5.0.7",
@@ -26,6 +28,8 @@
     "reactstrap": "^5.0.0",
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
+    "redux-logger": "^3.0.6",
+    "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"
   }
 }

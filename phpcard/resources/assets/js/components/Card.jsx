@@ -7,20 +7,19 @@ import {cards} from '../actions';
 
 
 class Card extends Component {
+    state = {
+      text: "",
+      updateCardId: null,
+    }  
 
-  state = {
-    text: "",
-    updateCardId:null
+  resetForm = () => {
+    this.setState({text: "", updateCardId: null});
   }
 
   componentDidMount() {
     this.props.fetchCards();
   }
 
-  resetForm = () => {
-    this.setState({text: "", updateCardId: null});
-  }
-  
   selectForEdit = (id) => {
     let card = this.props.cards[id];
     this.setState({text: card.text, updateCardId: id});

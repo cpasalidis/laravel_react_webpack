@@ -1,0 +1,3 @@
+Laravel has a template engine named blade. The entry template is the welcome.blade.php. I used the react preset for laravel-mix
+After laravel-mix i modified the js part, to start on index.js which itself uses ReactApp.jsx rendered on div with id=root
+Use https://code.tutsplus.com/tutorials/build-a-react-app-with-laravel-backend-part-2-react--cms-29443 to find out what to change and this project as guide what to name
