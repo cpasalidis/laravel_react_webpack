@@ -25,7 +25,6 @@ class CardsController extends Controller
             'description' => 'required',
         ]);
         $card = Card::create($request->all());
- 
         return response()->json($card, 201);
     }
  

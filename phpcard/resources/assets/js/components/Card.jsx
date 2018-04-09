@@ -8,12 +8,13 @@ import {Button,Form,FormGroup,Input} from 'reactstrap';
 
 class Card extends Component {
     state = {
-      text: "",
+      title: "",
+      description: "",
       updateCardId: null,
     }  
 
   resetForm = () => {
-    this.setState({text: "", updateCardId: null});
+    this.setState({title: "",description: "", updateCardId: null});
   }
 
   componentDidMount() {
@@ -22,15 +23,15 @@ class Card extends Component {
 
   selectForEdit = (id) => {
     let card = this.props.cards[id];
-    this.setState({text: card.text, updateCardId: id});
+    this.setState({title: card.title,description:card.description,updateCardId: id});
   }
   
   submitCard = (e) => {
     e.preventDefault();
     if (this.state.updateCardId === null) {
-      this.props.addCard(this.state.text).then(this.resetForm);
+      this.props.addCard(this.state.title,this.state.description).then(this.resetForm);
     } else {
-      this.props.updateCard(this.state.updateCardId, this.state.text).then(this.resetForm);
+      this.props.updateCard(this.state.updateCardId, this.state.title,this.state.description).then(this.resetForm);
     }
     this.resetForm();
   }
@@ -45,13 +46,20 @@ class Card extends Component {
         <Form inline onSubmit={this.submitCard}>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Input
-            value={this.state.text}
-            placeholder="Enter card here..."
-            onChange={(e) => this.setState({text: e.target.value})}
+            value={this.state.title}
+            placeholder="Card Title..."
+            onChange={(e) => this.setState({title: e.target.value})}
             required />
+          </FormGroup>
+          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Input
+            value={this.state.description}
+            placeholder="Card description..."
+            onChange={(e) => this.setState({description: e.target.value})}
+            required />
+          </FormGroup>
           <Button color="success" type="submit"> Save Card </Button>
           <Button onClick={this.resetForm}>Reset</Button>
-          </FormGroup>
         </Form>
 
           <h3>Cards</h3>
@@ -59,7 +67,8 @@ class Card extends Component {
             <tbody>
               {this.props.cards.map((card,id) => (
                 <tr key={"card_"+id} >
-                  <td>{card.text}</td>
+                  <td>{card.title}</td>
+                  <td>{card.description}</td>
                   <td><Button color="success" onClick={() => this.selectForEdit(id)}>edit</Button></td>
                   <td><Button color="danger" onClick={()=>this.props.deleteCard(id)}>delete</Button></td>
                 </tr>
@@ -83,11 +92,11 @@ class Card extends Component {
       fetchCards: () => {
           dispatch(cards.fetchCards());
         },
-      addCard: (text) => {
-        return dispatch(cards.addCard(text));
+      addCard: (title,description) => {
+        return dispatch(cards.addCard(title,description));
       },
-      updateCard: (id, text) => {
-        return dispatch(cards.addCard(id, text));
+      updateCard: (id, title,description) => {
+        return dispatch(cards.addCard(id, title,description));
       },
       deleteCard: (id) => {
         dispatch(cards.deleteCard(id));

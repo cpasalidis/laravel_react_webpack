@@ -47400,19 +47400,20 @@ var Card = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Card.__proto__ || Object.getPrototypeOf(Card)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      text: "",
+      title: "",
+      description: "",
       updateCardId: null
     }, _this.resetForm = function () {
-      _this.setState({ text: "", updateCardId: null });
+      _this.setState({ title: "", description: "", updateCardId: null });
     }, _this.selectForEdit = function (id) {
       var card = _this.props.cards[id];
-      _this.setState({ text: card.text, updateCardId: id });
+      _this.setState({ title: card.title, description: card.description, updateCardId: id });
     }, _this.submitCard = function (e) {
       e.preventDefault();
       if (_this.state.updateCardId === null) {
-        _this.props.addCard(_this.state.text).then(_this.resetForm);
+        _this.props.addCard(_this.state.title, _this.state.description).then(_this.resetForm);
       } else {
-        _this.props.updateCard(_this.state.updateCardId, _this.state.text).then(_this.resetForm);
+        _this.props.updateCard(_this.state.updateCardId, _this.state.title, _this.state.description).then(_this.resetForm);
       }
       _this.resetForm();
     }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -47433,7 +47434,7 @@ var Card = function (_Component) {
         _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 41
+            lineNumber: 42
           },
           __self: this
         }, '__self', this),
@@ -47442,7 +47443,7 @@ var Card = function (_Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 42
+              lineNumber: 43
             },
             __self: this
           }, '__self', this),
@@ -47451,7 +47452,7 @@ var Card = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 43
+            lineNumber: 44
           },
           __self: this
         }, '__self', this)),
@@ -47460,7 +47461,7 @@ var Card = function (_Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 44
+              lineNumber: 45
             },
             __self: this
           }, '__self', this),
@@ -47470,7 +47471,7 @@ var Card = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_4_reactstrap__["b" /* Form */],
           _defineProperty({ inline: true, onSubmit: this.submitCard, __source: {
               fileName: _jsxFileName,
-              lineNumber: 45
+              lineNumber: 46
             },
             __self: this
           }, '__self', this),
@@ -47478,42 +47479,63 @@ var Card = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_4_reactstrap__["c" /* FormGroup */],
             _defineProperty({ className: 'mb-2 mr-sm-2 mb-sm-0', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 46
+                lineNumber: 47
               },
               __self: this
             }, '__self', this),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_reactstrap__["d" /* Input */], _defineProperty({
-              value: this.state.text,
-              placeholder: 'Enter card here...',
+              value: this.state.title,
+              placeholder: 'Card Title...',
               onChange: function onChange(e) {
-                return _this2.setState({ text: e.target.value });
+                return _this2.setState({ title: e.target.value });
               },
               required: true, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 47
+                lineNumber: 48
               },
               __self: this
-            }, '__self', this)),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Button */],
-              _defineProperty({ color: 'success', type: 'submit', __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 52
-                },
-                __self: this
-              }, '__self', this),
-              ' Save Card '
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Button */],
-              _defineProperty({ onClick: this.resetForm, __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 53
-                },
-                __self: this
-              }, '__self', this),
-              'Reset'
-            )
+            }, '__self', this))
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_4_reactstrap__["c" /* FormGroup */],
+            _defineProperty({ className: 'mb-2 mr-sm-2 mb-sm-0', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 54
+              },
+              __self: this
+            }, '__self', this),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_reactstrap__["d" /* Input */], _defineProperty({
+              value: this.state.description,
+              placeholder: 'Card description...',
+              onChange: function onChange(e) {
+                return _this2.setState({ description: e.target.value });
+              },
+              required: true, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 55
+              },
+              __self: this
+            }, '__self', this))
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Button */],
+            _defineProperty({ color: 'success', type: 'submit', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 61
+              },
+              __self: this
+            }, '__self', this),
+            ' Save Card '
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Button */],
+            _defineProperty({ onClick: this.resetForm, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 62
+              },
+              __self: this
+            }, '__self', this),
+            'Reset'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -47521,7 +47543,7 @@ var Card = function (_Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 57
+              lineNumber: 65
             },
             __self: this
           }, '__self', this),
@@ -47532,7 +47554,7 @@ var Card = function (_Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 58
+              lineNumber: 66
             },
             __self: this
           }, '__self', this),
@@ -47541,7 +47563,7 @@ var Card = function (_Component) {
             _defineProperty({
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 59
+                lineNumber: 67
               },
               __self: this
             }, '__self', this),
@@ -47550,7 +47572,7 @@ var Card = function (_Component) {
                 'tr',
                 _defineProperty({ key: "card_" + id, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 61
+                    lineNumber: 69
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -47559,18 +47581,29 @@ var Card = function (_Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 62
+                      lineNumber: 70
                     },
                     __self: _this2
                   }, '__self', _this2),
-                  card.text
+                  card.title
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'td',
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 63
+                      lineNumber: 71
+                    },
+                    __self: _this2
+                  }, '__self', _this2),
+                  card.description
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'td',
+                  _defineProperty({
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 72
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -47580,7 +47613,7 @@ var Card = function (_Component) {
                         return _this2.selectForEdit(id);
                       }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 63
+                        lineNumber: 72
                       },
                       __self: _this2
                     }, '__self', _this2),
@@ -47592,7 +47625,7 @@ var Card = function (_Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 64
+                      lineNumber: 73
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -47602,7 +47635,7 @@ var Card = function (_Component) {
                         return _this2.props.deleteCard(id);
                       }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 64
+                        lineNumber: 73
                       },
                       __self: _this2
                     }, '__self', _this2),
@@ -47631,11 +47664,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchCards: function fetchCards() {
       dispatch(__WEBPACK_IMPORTED_MODULE_3__actions__["a" /* cards */].fetchCards());
     },
-    addCard: function addCard(text) {
-      return dispatch(__WEBPACK_IMPORTED_MODULE_3__actions__["a" /* cards */].addCard(text));
+    addCard: function addCard(title, description) {
+      return dispatch(__WEBPACK_IMPORTED_MODULE_3__actions__["a" /* cards */].addCard(title, description));
     },
-    updateCard: function updateCard(id, text) {
-      return dispatch(__WEBPACK_IMPORTED_MODULE_3__actions__["a" /* cards */].addCard(id, text));
+    updateCard: function updateCard(id, title, description) {
+      return dispatch(__WEBPACK_IMPORTED_MODULE_3__actions__["a" /* cards */].addCard(id, title, description));
     },
     deleteCard: function deleteCard(id) {
       dispatch(__WEBPACK_IMPORTED_MODULE_3__actions__["a" /* cards */].deleteCard(id));
@@ -48829,9 +48862,9 @@ var fetchCards = function fetchCards() {
   };
 };
 
-var addCard = function addCard(text) {
+var addCard = function addCard(title, description) {
   var headers = getHeaders();
-  var body = JSON.stringify({ text: text });
+  var body = JSON.stringify({ title: title, description: description });
   return function (dispatch) {
     return fetch("/api/cards/", { headers: headers, credentials: 'same-origin', method: "POST", body: body }).then(function (res) {
       return res.json();
@@ -48844,11 +48877,11 @@ var addCard = function addCard(text) {
   }; //of dispatch
 }; //of addCard
 
-var updateCard = function updateCard(index, text) {
+var updateCard = function updateCard(index, title, description) {
   return function (dispatch, getState) {
 
     var headers = getHeaders();
-    var body = JSON.stringify({ text: text });
+    var body = JSON.stringify({ title: title, description: description });
     var cardId = getState().cards[index].id;
 
     return fetch("/api/notes/" + cardId + "/", { headers: headers, credentials: 'same-origin', method: "PUT", body: body }).then(function (res) {
