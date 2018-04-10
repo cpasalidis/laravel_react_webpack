@@ -13,8 +13,10 @@ const initialState = [
   
       case 'UPDATE_CARD':
         let cardToUpdate = cardList[action.index]
-        cardToUpdate.text = action.text;
-        cardList.splice(action.id, 1, cardToUpdate);
+        cardToUpdate.title = action.card.title;
+        cardToUpdate.description = action.card.description;
+        cardToUpdate.imgurl = action.card.imgurl;
+        cardList.splice(action.index, 1, cardToUpdate);
         return cardList;
   
       case 'DELETE_CARD':
