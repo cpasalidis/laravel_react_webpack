@@ -8,10 +8,25 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//@import '~bootstrap/dist/css/bootstrap.min.css';
+
 //.navbar-laravel {
 //  background-color: #fff;
 //  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 //}
 
+//https://stackoverflow.com/questions/35868756/how-can-i-make-bootstrap-4-cards-all-the-same-height
+//http://codeply.com/go/YFFFWHVoRB
+@media (min-width:768px) {
+    .card-deck > .card
+    {
+        width: 29%;
+        flex-wrap: wrap;
+        flex: initial; 
+    }
+}
+
 //My css
 @import '../css/index.css'
+
+
