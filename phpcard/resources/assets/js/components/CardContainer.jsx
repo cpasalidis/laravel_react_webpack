@@ -4,9 +4,11 @@ import {connect} from 'react-redux';
 
 import {cards} from '../actions';
 import {Button,Form,FormGroup,Input,Container,Row,Col} from 'reactstrap';
+import { Card, CardImg, CardTitle, CardText, CardDeck,CardHeader,CardFooter,CardColumns,CardGroup,
+  CardSubtitle, CardBody } from 'reactstrap';
 
 
-class Card extends Component {
+class CardContainer extends Component {
     state = {
       title: "",
       description: "",
@@ -75,19 +77,25 @@ class Card extends Component {
         </Form>
 
           <h3>Cards</h3>
-          <Container>
-          {this.props.cards.map((card,id) => (
-                <Row key={"card_"+id} >
-                  <Col sm="3">{card.title}</Col>
-                  <Col sm="3">{card.description}</Col>
-                  <Col sm="3"><img src={card.imgurl} style={imageStyle} className="img-thumbnail" alt={card.title}/></Col>
-                  <Col sm="3">
-                  <Button color="success" onClick={() => this.selectForEdit(id)}>edit</Button>
-                  <Button color="danger" onClick={()=>this.props.deleteCard(id)}>delete</Button>
-                  </Col>
-                </Row>
+          {/*create a card deck. Then for each card put it on the deck with the normal look*/}
+          <Row>
+            <Col md="9">
+              <CardDeck>
+              {this.props.cards.map((card,id) => (
+                <Card key={"card_"+id}>
+                  <CardHeader>{card.title}</CardHeader>
+                  <CardImg src={card.imgurl} style={imageStyle} alt={card.title}/>
+                  <CardBody>
+                    <CardText>{card.description}</CardText>
+                    <Button color="success" onClick={() => this.selectForEdit(id)}>edit</Button>
+                    <Button color="danger" onClick={()=>this.props.deleteCard(id)}>delete</Button>
+                  </CardBody>
+                  <CardFooter>Footer</CardFooter>
+                </Card>
               ))}
-          </Container>
+              </CardDeck>
+            </Col>
+          </Row>
         </div>
       )
     }
@@ -118,5 +126,5 @@ class Card extends Component {
   }
   
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Card);
+  export default connect(mapStateToProps, mapDispatchToProps)(CardContainer);
   

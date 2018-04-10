@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Route, Switch, BrowserRouter} from 'react-router-dom';
-import Card from "./components/Card";
+import CardContainer from "./components/CardContainer";
 import NotFound from "./components/NotFound";
 //redux
 import { Provider } from "react-redux";
@@ -12,7 +12,7 @@ class ReactApp extends Component {
       <Provider store={store}>
       <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Card} />
+        <Route exact path="/" component={CardContainer} />
         <Route component={NotFound} />
       </Switch>
       </BrowserRouter>
