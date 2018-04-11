@@ -29,7 +29,8 @@ class CardContainer extends Component {
 
   selectForEdit = (cardIdx) => {
     let card = this.props.cards[cardIdx];
-    this.setState({title: card.title,description:card.description,imgurl:card.imgurl?card.imgurl:"", updateCardId: cardIdx});
+    this.setState({title: card.title,description:card.description,imgurl:card.imgurl?card.imgurl:"", updateCardId: cardIdx,
+  modal:true});
   }
   
   submitCard = (e) => {
