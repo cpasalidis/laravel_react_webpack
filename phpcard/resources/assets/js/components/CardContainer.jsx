@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {cards} from '../actions';
-import {Button,Form,FormGroup,Input,Container,Row,Col} from 'reactstrap';
+import {Button,Form,FormGroup,Input,Container,Row,Col,Badge} from 'reactstrap';
 import { Card, CardImg, CardTitle, CardText, CardDeck,CardHeader,CardFooter,CardColumns,CardGroup,
   CardSubtitle, CardBody } from 'reactstrap';
 import CardModal from './CardModal';
@@ -64,6 +64,14 @@ class CardContainer extends Component {
         imgurl:this.state.imgurl,
         card_status_id:this.state.card_status_id,
         updateCardId:this.state.updateCardId};
+      const STATUS_ICONS=[
+        <Badge color="primary"></Badge>, //status id 0
+        <Badge color="primary"><span className="fa fa-check" title="check" aria-hidden="true"/></Badge>, //status id 1
+        <Badge color="success"><span className="fa fa-check-circle" title="check-circle" aria-hidden="true"/></Badge>, //status id 1
+        <Badge color="primary"><span className="fa fa-clock" title="clock" aria-hidden="true"/></Badge>, //status id 1
+        <Badge color="primary"><span className="fa fa-pause" title="pause" aria-hidden="true"/></Badge>, //status id 1
+        <Badge color="danger"><span className="fa fa-trash-alt" title="trash-alt" aria-hidden="true"/></Badge>, //status id 1        
+      ];
       return (
         <div>
         <hr />  
@@ -99,7 +107,7 @@ class CardContainer extends Component {
                     <Button color="success" onClick={() => this.selectForEdit(id)}>edit</Button>
                     <Button color="danger" onClick={()=>this.props.deleteCard(id)}>delete</Button>
                   </CardBody>
-                  <CardFooter>Footer</CardFooter>
+                  <CardFooter>{STATUS_ICONS[parseInt(card.card_status_id,10)||0]}</CardFooter>
                 </Card>
               ))}
               </CardDeck>
