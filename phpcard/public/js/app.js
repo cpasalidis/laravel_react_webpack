@@ -49473,7 +49473,7 @@ function unregister() {
 "use strict";
 /* unused harmony export Alert */
 /* unused harmony export Container */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return Row; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return Row; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return Col; });
 /* unused harmony export Navbar */
 /* unused harmony export NavbarBrand */
@@ -49520,10 +49520,10 @@ function unregister() {
 /* unused harmony export PopoverTitle */
 /* unused harmony export PopoverHeader */
 /* unused harmony export Progress */
-/* unused harmony export Modal */
-/* unused harmony export ModalHeader */
-/* unused harmony export ModalBody */
-/* unused harmony export ModalFooter */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return Modal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return ModalHeader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return ModalBody; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return ModalFooter; });
 /* unused harmony export PopperContent */
 /* unused harmony export PopperTargetHelper */
 /* unused harmony export Tooltip */
@@ -70430,6 +70430,7 @@ return jQuery;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_reactstrap__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CardModal__ = __webpack_require__(184);
 var _jsxFileName = '/Users/cnp/projects/php/laravel_react_webpack/phpcard/resources/assets/js/components/CardContainer.jsx';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -70441,6 +70442,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -70468,7 +70470,8 @@ var CardContainer = function (_Component) {
       title: "",
       description: "",
       imgurl: "",
-      updateCardId: null
+      updateCardId: null,
+      modal: false
     }, _this.resetForm = function () {
       _this.setState({ title: "", description: "", imgurl: "", updateCardId: null });
     }, _this.selectForEdit = function (cardIdx) {
@@ -70482,6 +70485,10 @@ var CardContainer = function (_Component) {
         _this.props.updateCard(_this.state.updateCardId, _this.state.title, _this.state.description, _this.state.imgurl).then(_this.resetForm);
       }
       _this.resetForm();
+    }, _this.onToggle = function () {
+      _this.setState({
+        modal: !_this.state.modal
+      });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -70496,13 +70503,13 @@ var CardContainer = function (_Component) {
       var _this2 = this;
 
       var imageStyle = { maxWidth: '20%' };
-      var defaultCardImgUrl = 'data:image/jpeg;base64,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';
+      var defaultCardImgUrl = 'http://icons.iconarchive.com/icons/iconsmind/outline/128/Guitar-icon.png';
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 49
+            lineNumber: 56
           },
           __self: this
         }, '__self', this),
@@ -70511,7 +70518,7 @@ var CardContainer = function (_Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 50
+              lineNumber: 57
             },
             __self: this
           }, '__self', this),
@@ -70520,27 +70527,65 @@ var CardContainer = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 51
+            lineNumber: 58
           },
           __self: this
         }, '__self', this)),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
+          __WEBPACK_IMPORTED_MODULE_4_reactstrap__["q" /* Row */],
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 52
+              lineNumber: 59
             },
             __self: this
           }, '__self', this),
-          'Add new card'
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_4_reactstrap__["i" /* Col */],
+            _defineProperty({ md: '8', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 60
+              },
+              __self: this
+            }, '__self', this),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h3',
+              _defineProperty({
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 61
+                },
+                __self: this
+              }, '__self', this),
+              'Add new card'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_4_reactstrap__["i" /* Col */],
+            _defineProperty({ md: '1', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 63
+              },
+              __self: this
+            }, '__self', this),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Button */],
+              _defineProperty({ color: 'danger', onClick: this.onToggle, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 64
+                },
+                __self: this
+              }, '__self', this),
+              'Add Card'
+            )
+          )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_4_reactstrap__["m" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_4_reactstrap__["q" /* Row */],
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 53
+              lineNumber: 67
             },
             __self: this
           }, '__self', this),
@@ -70548,16 +70593,22 @@ var CardContainer = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_4_reactstrap__["i" /* Col */],
             _defineProperty({ md: '9', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 54
+                lineNumber: 68
               },
               __self: this
             }, '__self', this),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CardModal__["a" /* default */], _defineProperty({ modal: this.state.modal, onToggle: this.onToggle, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 69
+              },
+              __self: this
+            }, '__self', this)),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_4_reactstrap__["b" /* Card */],
               _defineProperty({
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 55
+                  lineNumber: 70
                 },
                 __self: this
               }, '__self', this),
@@ -70565,7 +70616,7 @@ var CardContainer = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_4_reactstrap__["j" /* Form */],
                 _defineProperty({ onSubmit: this.submitCard, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 56
+                    lineNumber: 71
                   },
                   __self: this
                 }, '__self', this),
@@ -70574,7 +70625,7 @@ var CardContainer = function (_Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 57
+                      lineNumber: 72
                     },
                     __self: this
                   }, '__self', this),
@@ -70583,7 +70634,7 @@ var CardContainer = function (_Component) {
                     _defineProperty({
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 58
+                        lineNumber: 73
                       },
                       __self: this
                     }, '__self', this),
@@ -70595,7 +70646,7 @@ var CardContainer = function (_Component) {
                       },
                       required: true, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 59
+                        lineNumber: 74
                       },
                       __self: this
                     }, '__self', this))
@@ -70606,7 +70657,7 @@ var CardContainer = function (_Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 66
+                      lineNumber: 81
                     },
                     __self: this
                   }, '__self', this),
@@ -70615,7 +70666,7 @@ var CardContainer = function (_Component) {
                     _defineProperty({
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 67
+                        lineNumber: 82
                       },
                       __self: this
                     }, '__self', this),
@@ -70627,13 +70678,13 @@ var CardContainer = function (_Component) {
                       },
                       required: true, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 68
+                        lineNumber: 83
                       },
                       __self: this
                     }, '__self', this)),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_reactstrap__["g" /* CardImg */], _defineProperty({ src: this.state.imgurl ? this.state.imgurl : defaultCardImgUrl, style: imageStyle, className: 'img-thumbnail', alt: this.state.title, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 73
+                        lineNumber: 88
                       },
                       __self: this
                     }, '__self', this))
@@ -70643,7 +70694,7 @@ var CardContainer = function (_Component) {
                     _defineProperty({
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 75
+                        lineNumber: 90
                       },
                       __self: this
                     }, '__self', this),
@@ -70655,7 +70706,7 @@ var CardContainer = function (_Component) {
                       },
                       required: true, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 76
+                        lineNumber: 91
                       },
                       __self: this
                     }, '__self', this))
@@ -70664,7 +70715,7 @@ var CardContainer = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Button */],
                     _defineProperty({ color: 'success', type: 'submit', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 82
+                        lineNumber: 97
                       },
                       __self: this
                     }, '__self', this),
@@ -70674,7 +70725,7 @@ var CardContainer = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Button */],
                     _defineProperty({ onClick: this.resetForm, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 83
+                        lineNumber: 98
                       },
                       __self: this
                     }, '__self', this),
@@ -70690,7 +70741,7 @@ var CardContainer = function (_Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 89
+              lineNumber: 104
             },
             __self: this
           }, '__self', this),
@@ -70701,7 +70752,7 @@ var CardContainer = function (_Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 91
+              lineNumber: 106
             },
             __self: this
           }, '__self', this),
@@ -70710,7 +70761,7 @@ var CardContainer = function (_Component) {
               __WEBPACK_IMPORTED_MODULE_4_reactstrap__["b" /* Card */],
               _defineProperty({ key: "card_" + id, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 93
+                  lineNumber: 108
                 },
                 __self: _this2
               }, '__self', _this2),
@@ -70719,7 +70770,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 94
+                    lineNumber: 109
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70727,7 +70778,7 @@ var CardContainer = function (_Component) {
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_reactstrap__["g" /* CardImg */], _defineProperty({ src: card.imgurl, style: imageStyle, alt: card.title, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 95
+                  lineNumber: 110
                 },
                 __self: _this2
               }, '__self', _this2)),
@@ -70736,7 +70787,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 96
+                    lineNumber: 111
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70745,7 +70796,7 @@ var CardContainer = function (_Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 97
+                      lineNumber: 112
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70757,7 +70808,7 @@ var CardContainer = function (_Component) {
                       return _this2.selectForEdit(id);
                     }, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 98
+                      lineNumber: 113
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70769,7 +70820,7 @@ var CardContainer = function (_Component) {
                       return _this2.props.deleteCard(id);
                     }, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 99
+                      lineNumber: 114
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70781,7 +70832,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 101
+                    lineNumber: 116
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70821,6 +70872,131 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchToProps)(CardContainer));
+
+/***/ }),
+/* 184 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_reactstrap__ = __webpack_require__(171);
+var _jsxFileName = '/Users/cnp/projects/php/laravel_react_webpack/phpcard/resources/assets/js/components/CardModal.jsx';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+/** Will encapsulate the logic to add/edit a card 
+ * open the modal, from parent
+ * close the modal from this class(child)
+*/
+
+var CardModal = function (_React$Component) {
+  _inherits(CardModal, _React$Component);
+
+  function CardModal() {
+    _classCallCheck(this, CardModal);
+
+    return _possibleConstructorReturn(this, (CardModal.__proto__ || Object.getPrototypeOf(CardModal)).call(this));
+  }
+
+  _createClass(CardModal, [{
+    key: 'render',
+    value: function render(props) {
+      var _props = this.props,
+          modal = _props.modal,
+          onToggle = _props.onToggle,
+          className = _props.className;
+      //const {modal,onToggle,resetForm,submitCard,modalTitle} = this.props;
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        _defineProperty({
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 17
+          },
+          __self: this
+        }, '__self', this),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_reactstrap__["m" /* Modal */],
+          _defineProperty({ isOpen: modal, toggle: onToggle, className: className, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 18
+            },
+            __self: this
+          }, '__self', this),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_reactstrap__["p" /* ModalHeader */],
+            _defineProperty({ toggle: onToggle, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 19
+              },
+              __self: this
+            }, '__self', this),
+            'modalTitle'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_reactstrap__["n" /* ModalBody */],
+            _defineProperty({
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 20
+              },
+              __self: this
+            }, '__self', this),
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_reactstrap__["o" /* ModalFooter */],
+            _defineProperty({
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 23
+              },
+              __self: this
+            }, '__self', this),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_1_reactstrap__["a" /* Button */],
+              _defineProperty({ color: 'primary', onClick: onToggle, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 24
+                },
+                __self: this
+              }, '__self', this),
+              'Do Something'
+            ),
+            ' ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_1_reactstrap__["a" /* Button */],
+              _defineProperty({ color: 'secondary', onClick: onToggle, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 25
+                },
+                __self: this
+              }, '__self', this),
+              'Cancel'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return CardModal;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (CardModal);
 
 /***/ })
 /******/ ]);
