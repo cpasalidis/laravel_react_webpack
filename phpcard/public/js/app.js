@@ -49506,7 +49506,7 @@ function unregister() {
 "use strict";
 /* unused harmony export Alert */
 /* unused harmony export Container */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return Row; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return Row; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return Col; });
 /* unused harmony export Navbar */
 /* unused harmony export NavbarBrand */
@@ -49521,10 +49521,10 @@ function unregister() {
 /* unused harmony export ButtonDropdown */
 /* unused harmony export ButtonGroup */
 /* unused harmony export ButtonToolbar */
-/* unused harmony export Dropdown */
-/* unused harmony export DropdownItem */
-/* unused harmony export DropdownMenu */
-/* unused harmony export DropdownToggle */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return Dropdown; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return DropdownItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return DropdownMenu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return DropdownToggle; });
 /* unused harmony export Fade */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Badge; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Card; });
@@ -49553,20 +49553,20 @@ function unregister() {
 /* unused harmony export PopoverTitle */
 /* unused harmony export PopoverHeader */
 /* unused harmony export Progress */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return Modal; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return ModalHeader; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return ModalBody; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return Modal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return ModalHeader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return ModalBody; });
 /* unused harmony export ModalFooter */
 /* unused harmony export PopperContent */
 /* unused harmony export PopperTargetHelper */
 /* unused harmony export Tooltip */
 /* unused harmony export Table */
 /* unused harmony export ListGroup */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return Form; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return FormFeedback; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return FormGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return Form; });
+/* unused harmony export FormFeedback */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return FormGroup; });
 /* unused harmony export FormText */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return Input; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return Input; });
 /* unused harmony export InputGroup */
 /* unused harmony export InputGroupAddon */
 /* unused harmony export InputGroupButton */
@@ -70512,7 +70512,9 @@ var CardContainer = function (_Component) {
         modal: false });
     }, _this.selectForEdit = function (cardIdx) {
       var card = _this.props.cards[cardIdx];
-      _this.setState({ title: card.title, description: card.description, imgurl: card.imgurl ? card.imgurl : "", updateCardId: cardIdx,
+      _this.setState({ title: card.title, description: card.description, imgurl: card.imgurl ? card.imgurl : "",
+        card_status_id: card.card_status_id,
+        updateCardId: cardIdx,
         modal: true });
     }, _this.submitCard = function (e) {
       e.preventDefault();
@@ -70552,7 +70554,7 @@ var CardContainer = function (_Component) {
         updateCardId: this.state.updateCardId };
       var STATUS_ICONS = [__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Badge */], _defineProperty({ color: 'primary', __source: {
           fileName: _jsxFileName,
-          lineNumber: 71
+          lineNumber: 73
         },
         __self: this
       }, '__self', this)), //status id 0
@@ -70560,13 +70562,13 @@ var CardContainer = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Badge */],
         _defineProperty({ color: 'primary', __source: {
             fileName: _jsxFileName,
-            lineNumber: 72
+            lineNumber: 74
           },
           __self: this
         }, '__self', this),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', _defineProperty({ className: 'fa fa-check', title: 'check', 'aria-hidden': 'true', __source: {
             fileName: _jsxFileName,
-            lineNumber: 72
+            lineNumber: 74
           },
           __self: this
         }, '__self', this))
@@ -70575,13 +70577,13 @@ var CardContainer = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Badge */],
         _defineProperty({ color: 'success', __source: {
             fileName: _jsxFileName,
-            lineNumber: 73
+            lineNumber: 75
           },
           __self: this
         }, '__self', this),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', _defineProperty({ className: 'fa fa-check-circle', title: 'check-circle', 'aria-hidden': 'true', __source: {
             fileName: _jsxFileName,
-            lineNumber: 73
+            lineNumber: 75
           },
           __self: this
         }, '__self', this))
@@ -70590,13 +70592,13 @@ var CardContainer = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Badge */],
         _defineProperty({ color: 'primary', __source: {
             fileName: _jsxFileName,
-            lineNumber: 74
+            lineNumber: 76
           },
           __self: this
         }, '__self', this),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', _defineProperty({ className: 'fa fa-clock', title: 'clock', 'aria-hidden': 'true', __source: {
             fileName: _jsxFileName,
-            lineNumber: 74
+            lineNumber: 76
           },
           __self: this
         }, '__self', this))
@@ -70605,13 +70607,13 @@ var CardContainer = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Badge */],
         _defineProperty({ color: 'primary', __source: {
             fileName: _jsxFileName,
-            lineNumber: 75
+            lineNumber: 77
           },
           __self: this
         }, '__self', this),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', _defineProperty({ className: 'fa fa-pause', title: 'pause', 'aria-hidden': 'true', __source: {
             fileName: _jsxFileName,
-            lineNumber: 75
+            lineNumber: 77
           },
           __self: this
         }, '__self', this))
@@ -70620,13 +70622,13 @@ var CardContainer = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_4_reactstrap__["a" /* Badge */],
         _defineProperty({ color: 'danger', __source: {
             fileName: _jsxFileName,
-            lineNumber: 76
+            lineNumber: 78
           },
           __self: this
         }, '__self', this),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', _defineProperty({ className: 'fa fa-trash', title: 'trash', 'aria-hidden': 'true', __source: {
             fileName: _jsxFileName,
-            lineNumber: 76
+            lineNumber: 78
           },
           __self: this
         }, '__self', this))
@@ -70636,23 +70638,23 @@ var CardContainer = function (_Component) {
         _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 79
+            lineNumber: 81
           },
           __self: this
         }, '__self', this),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 80
+            lineNumber: 82
           },
           __self: this
         }, '__self', this)),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_4_reactstrap__["r" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_4_reactstrap__["u" /* Row */],
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 81
+              lineNumber: 83
             },
             __self: this
           }, '__self', this),
@@ -70660,7 +70662,7 @@ var CardContainer = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_4_reactstrap__["j" /* Col */],
             _defineProperty({ md: '8', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 82
+                lineNumber: 84
               },
               __self: this
             }, '__self', this),
@@ -70669,7 +70671,7 @@ var CardContainer = function (_Component) {
               _defineProperty({
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 83
+                  lineNumber: 85
                 },
                 __self: this
               }, '__self', this),
@@ -70680,7 +70682,7 @@ var CardContainer = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_4_reactstrap__["j" /* Col */],
             _defineProperty({ md: '1', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 85
+                lineNumber: 87
               },
               __self: this
             }, '__self', this),
@@ -70688,13 +70690,13 @@ var CardContainer = function (_Component) {
               __WEBPACK_IMPORTED_MODULE_4_reactstrap__["b" /* Button */],
               _defineProperty({ color: 'primary', onClick: this.onToggle, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 86
+                  lineNumber: 88
                 },
                 __self: this
               }, '__self', this),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', _defineProperty({ className: 'fa fa-plus', title: 'plus', 'aria-hidden': 'true', __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 88
+                  lineNumber: 90
                 },
                 __self: this
               }, '__self', this))
@@ -70702,11 +70704,11 @@ var CardContainer = function (_Component) {
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_4_reactstrap__["r" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_4_reactstrap__["u" /* Row */],
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 92
+              lineNumber: 94
             },
             __self: this
           }, '__self', this),
@@ -70714,16 +70716,16 @@ var CardContainer = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_4_reactstrap__["j" /* Col */],
             _defineProperty({ md: '9', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 93
+                lineNumber: 95
               },
               __self: this
             }, '__self', this),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CardModal__["a" /* default */], _defineProperty({ modal: this.state.modal, currentCardData: currentCardData, imageStyle: imageStyle,
-              cardStatuses: this.props.cardStatuses,
+              cardStatuses: this.props.cardStatuses, statusIcons: STATUS_ICONS,
               onToggle: this.onToggle, onSetParentsState: this.onSetParentsState,
               submitCard: this.submitCard, resetForm: this.resetForm, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 94
+                lineNumber: 96
               },
               __self: this
             }, '__self', this))
@@ -70734,7 +70736,7 @@ var CardContainer = function (_Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 102
+              lineNumber: 104
             },
             __self: this
           }, '__self', this),
@@ -70743,7 +70745,7 @@ var CardContainer = function (_Component) {
               __WEBPACK_IMPORTED_MODULE_4_reactstrap__["c" /* Card */],
               _defineProperty({ key: "card_" + id, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 105
+                  lineNumber: 107
                 },
                 __self: _this2
               }, '__self', _this2),
@@ -70752,7 +70754,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 106
+                    lineNumber: 108
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70760,7 +70762,7 @@ var CardContainer = function (_Component) {
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_reactstrap__["h" /* CardImg */], _defineProperty({ src: card.imgurl, style: imageStyle, alt: card.title, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 107
+                  lineNumber: 109
                 },
                 __self: _this2
               }, '__self', _this2)),
@@ -70769,7 +70771,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 108
+                    lineNumber: 110
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70778,7 +70780,7 @@ var CardContainer = function (_Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 109
+                      lineNumber: 111
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70790,7 +70792,7 @@ var CardContainer = function (_Component) {
                       return _this2.selectForEdit(id);
                     }, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 110
+                      lineNumber: 112
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70802,7 +70804,7 @@ var CardContainer = function (_Component) {
                       return _this2.props.deleteCard(id);
                     }, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 111
+                      lineNumber: 113
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70814,7 +70816,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 113
+                    lineNumber: 115
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70883,6 +70885,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 /** Will encapsulate the logic to add/edit a card 
  * open the modal, from parent
  * close the modal from this class(child)
@@ -70894,10 +70897,23 @@ var CardModal = function (_React$Component) {
   function CardModal() {
     _classCallCheck(this, CardModal);
 
-    return _possibleConstructorReturn(this, (CardModal.__proto__ || Object.getPrototypeOf(CardModal)).call(this));
+    var _this = _possibleConstructorReturn(this, (CardModal.__proto__ || Object.getPrototypeOf(CardModal)).call(this));
+
+    _this.state = {
+      statusDropdownOpen: false
+    };
+    _this.toggleStatusDropDown = _this.toggleStatusDropDown.bind(_this);
+    return _this;
   }
 
   _createClass(CardModal, [{
+    key: 'toggleStatusDropDown',
+    value: function toggleStatusDropDown() {
+      this.setState({
+        statusDropdownOpen: !this.state.statusDropdownOpen
+      });
+    }
+  }, {
     key: 'render',
     value: function render(props) {
       var _this2 = this;
@@ -70908,54 +70924,47 @@ var CardModal = function (_React$Component) {
           onSetParentsState = _props.onSetParentsState,
           currentCardData = _props.currentCardData,
           cardStatuses = _props.cardStatuses,
+          statusIcons = _props.statusIcons,
           submitCard = _props.submitCard,
           resetForm = _props.resetForm,
           className = _props.className,
           imageStyle = _props.imageStyle;
 
       var defaultCardImgUrl = 'http://icons.iconarchive.com/icons/iconsmind/outline/128/Guitar-icon.png';
-      //https://stackoverflow.com/questions/36743041/font-awesome-icon-in-select-option
-      //https://stackoverflow.com/questions/35166758/react-javascript-displaying-decoding-unicode-characters
-      //Badge is a span, not allowed inside option
-      var STATUS_ICONS = ['', //status id 0
-      '\uF00C', //status id 1 (fa-check)
-      '\uF058', //status id 2 (fa-check-circle)
-      '\uF017', //status id 3 (fa-clock)
-      '\uF04C', //status id 4 (fa-pause)
-      '\uF1F8'];
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 32
+            lineNumber: 33
           },
           __self: this
         }, '__self', this),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_reactstrap__["o" /* Modal */],
+          __WEBPACK_IMPORTED_MODULE_1_reactstrap__["r" /* Modal */],
           _defineProperty({ isOpen: modal, toggle: onToggle, className: className, __source: {
               fileName: _jsxFileName,
-              lineNumber: 33
+              lineNumber: 34
             },
             __self: this
           }, '__self', this),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_reactstrap__["q" /* ModalHeader */],
+            __WEBPACK_IMPORTED_MODULE_1_reactstrap__["t" /* ModalHeader */],
             _defineProperty({ toggle: onToggle, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 34
+                lineNumber: 35
               },
               __self: this
             }, '__self', this),
             currentCardData.updateCardId ? 'Edit Card' : 'Add Card'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_reactstrap__["p" /* ModalBody */],
+            __WEBPACK_IMPORTED_MODULE_1_reactstrap__["s" /* ModalBody */],
             _defineProperty({
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 35
+                lineNumber: 36
               },
               __self: this
             }, '__self', this),
@@ -70964,15 +70973,15 @@ var CardModal = function (_React$Component) {
               _defineProperty({
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 36
+                  lineNumber: 37
                 },
                 __self: this
               }, '__self', this),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_1_reactstrap__["k" /* Form */],
+                __WEBPACK_IMPORTED_MODULE_1_reactstrap__["o" /* Form */],
                 _defineProperty({ onSubmit: submitCard, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 37
+                    lineNumber: 38
                   },
                   __self: this
                 }, '__self', this),
@@ -70981,20 +70990,20 @@ var CardModal = function (_React$Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 38
+                      lineNumber: 39
                     },
                     __self: this
                   }, '__self', this),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["m" /* FormGroup */],
+                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["p" /* FormGroup */],
                     _defineProperty({
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 39
+                        lineNumber: 40
                       },
                       __self: this
                     }, '__self', this),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["n" /* Input */], _defineProperty({
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["q" /* Input */], _defineProperty({
                       value: currentCardData.title,
                       placeholder: 'Card Title...',
                       onChange: function onChange(e) {
@@ -71002,7 +71011,7 @@ var CardModal = function (_React$Component) {
                       },
                       required: true, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 40
+                        lineNumber: 41
                       },
                       __self: this
                     }, '__self', this))
@@ -71013,20 +71022,20 @@ var CardModal = function (_React$Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 47
+                      lineNumber: 48
                     },
                     __self: this
                   }, '__self', this),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["m" /* FormGroup */],
+                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["p" /* FormGroup */],
                     _defineProperty({
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 48
+                        lineNumber: 49
                       },
                       __self: this
                     }, '__self', this),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["n" /* Input */], _defineProperty({
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["q" /* Input */], _defineProperty({
                       value: currentCardData.imgurl,
                       placeholder: 'Image url...',
                       onChange: function onChange(e) {
@@ -71034,28 +71043,28 @@ var CardModal = function (_React$Component) {
                       },
                       required: true, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 49
+                        lineNumber: 50
                       },
                       __self: this
                     }, '__self', this)),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["h" /* CardImg */], _defineProperty({ src: currentCardData.imgurl ? currentCardData.imgurl : defaultCardImgUrl, style: imageStyle,
                       className: 'img-thumbnail', alt: currentCardData.title, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 54
+                        lineNumber: 55
                       },
                       __self: this
                     }, '__self', this))
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["m" /* FormGroup */],
+                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["p" /* FormGroup */],
                     _defineProperty({
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 57
+                        lineNumber: 58
                       },
                       __self: this
                     }, '__self', this),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["n" /* Input */], _defineProperty({
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["q" /* Input */], _defineProperty({
                       value: currentCardData.description,
                       placeholder: 'Card description...',
                       onChange: function onChange(e) {
@@ -71063,78 +71072,76 @@ var CardModal = function (_React$Component) {
                       },
                       required: true, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 58
+                        lineNumber: 59
                       },
                       __self: this
                     }, '__self', this))
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["m" /* FormGroup */],
-                    _defineProperty({
-                      __source: {
+                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["k" /* Dropdown */],
+                    _defineProperty({ isOpen: this.state.statusDropdownOpen, toggle: this.toggleStatusDropDown, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 64
+                        lineNumber: 65
                       },
                       __self: this
                     }, '__self', this),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      __WEBPACK_IMPORTED_MODULE_1_reactstrap__["n" /* Input */],
-                      _defineProperty({
-                        id: 'statusSelect',
-                        type: 'select',
-                        valid: currentCardData.card_status_id > 0,
-                        value: currentCardData.card_status_id,
-                        placeholder: 'Card Status...',
-                        onChange: function onChange(e) {
-                          return onSetParentsState({ card_status_id: e.target.value });
-                        },
-                        style: { fontFamily: 'Helvetica, FontAwesome' },
-                        required: true, __source: {
+                      __WEBPACK_IMPORTED_MODULE_1_reactstrap__["n" /* DropdownToggle */],
+                      _defineProperty({ color: 'light', caret: true, __source: {
                           fileName: _jsxFileName,
-                          lineNumber: 65
+                          lineNumber: 66
                         },
                         __self: this
                       }, '__self', this),
-                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'option',
-                        _defineProperty({ key: 0, value: 0, __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 74
-                          },
-                          __self: this
-                        }, '__self', this),
-                        'Please select a status'
-                      ),
-                      cardStatuses.length > 0 && cardStatuses.map(function (cardStatus, id) {
-                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                          'option',
-                          _defineProperty({ key: cardStatus.id, value: cardStatus.id, __source: {
-                              fileName: _jsxFileName,
-                              lineNumber: 77
-                            },
-                            __self: _this2
-                          }, '__self', _this2),
-                          cardStatus.description + ' ' + STATUS_ICONS[parseInt(cardStatus.id, 10) || 0]
-                        );
-                      })
+                      currentCardData.card_status_id > 0 && cardStatuses.length > 0 ? cardStatuses[currentCardData.card_status_id - 1].description : 'Card Status',
+                      ' ',
+                      ' ',
+                      ' ',
+                      statusIcons[currentCardData.card_status_id]
                     ),
-                    currentCardData.card_status_id > 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      __WEBPACK_IMPORTED_MODULE_1_reactstrap__["l" /* FormFeedback */],
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      __WEBPACK_IMPORTED_MODULE_1_reactstrap__["m" /* DropdownMenu */],
                       _defineProperty({
                         __source: {
                           fileName: _jsxFileName,
-                          lineNumber: 80
+                          lineNumber: 73
                         },
                         __self: this
                       }, '__self', this),
-                      'Please select a status'
+                      cardStatuses.length > 0 && cardStatuses.map(function (cardStatus, id) {
+                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                          __WEBPACK_IMPORTED_MODULE_1_reactstrap__["l" /* DropdownItem */],
+                          _defineProperty({ key: cardStatus.id, value: cardStatus.id, onClick: function onClick(e) {
+                              return onSetParentsState({ card_status_id: e.target.value });
+                            }, __source: {
+                              fileName: _jsxFileName,
+                              lineNumber: 76
+                            },
+                            __self: _this2
+                          }, '__self', _this2),
+                          cardStatus.description,
+                          ' ',
+                          statusIcons[parseInt(cardStatus.id, 10) || 0]
+                        );
+                      })
                     )
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_1_reactstrap__["i" /* CardText */],
+                    _defineProperty({
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 80
+                      },
+                      __self: this
+                    }, '__self', this),
+                    ' '
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_1_reactstrap__["b" /* Button */],
                     _defineProperty({ color: 'success', type: 'submit', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 82
+                        lineNumber: 81
                       },
                       __self: this
                     }, '__self', this),
@@ -71144,7 +71151,7 @@ var CardModal = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_1_reactstrap__["b" /* Button */],
                     _defineProperty({ onClick: resetForm, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 83
+                        lineNumber: 82
                       },
                       __self: this
                     }, '__self', this),

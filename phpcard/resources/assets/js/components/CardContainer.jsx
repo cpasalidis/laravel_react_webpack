@@ -31,7 +31,9 @@ class CardContainer extends Component {
 
   selectForEdit = (cardIdx) => {
     let card = this.props.cards[cardIdx];
-    this.setState({title: card.title,description:card.description,imgurl:card.imgurl?card.imgurl:"", updateCardId: cardIdx,
+    this.setState({title: card.title,description:card.description,imgurl:card.imgurl?card.imgurl:"",
+    card_status_id:card.card_status_id,
+    updateCardId: cardIdx,
   modal:true});
   }
   
@@ -92,7 +94,7 @@ class CardContainer extends Component {
         <Row>
         <Col md="9">
         <CardModal modal={this.state.modal} currentCardData={currentCardData} imageStyle={imageStyle}
-          cardStatuses={this.props.cardStatuses}
+          cardStatuses={this.props.cardStatuses} statusIcons={STATUS_ICONS}
           onToggle={this.onToggle} onSetParentsState={this.onSetParentsState}
           submitCard={this.submitCard} resetForm={this.resetForm} >
         </CardModal>
