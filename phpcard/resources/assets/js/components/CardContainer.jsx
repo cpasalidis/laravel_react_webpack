@@ -19,7 +19,8 @@ class CardContainer extends Component {
     }  
 
   resetForm = () => {
-    this.setState({title: "",description: "",imgurl:"", updateCardId: null});
+    this.setState({title: "",description: "",imgurl:"", updateCardId: null,
+    modal: false});
   }
 
   componentDidMount() {
@@ -49,59 +50,39 @@ class CardContainer extends Component {
       });
     }
 
+    onSetParentsState = (newState) => {
+      this.setState(newState);
+    }
+
     render() {
       const imageStyle={maxWidth:'20%'};
-      const defaultCardImgUrl='http://icons.iconarchive.com/icons/iconsmind/outline/128/Guitar-icon.png';
+      const currentCardData={
+        title:this.state.title,
+        description:this.state.description,
+        imgurl:this.state.imgurl,
+        updateCardId:this.state.updateCardId};
       return (
         <div>
-          <h2>Welcome to Card!!</h2>
-          <hr />
+        <hr />  
         <Row>
         <Col md="8">
-        <h3>Add new card</h3>
+        <h2>Welcome to Card!!</h2>
         </Col>
         <Col md="1">
-        <Button color="danger" onClick={this.onToggle}>Add Card</Button>
+        <Button color="primary" onClick={this.onToggle}>
+        {/* i have included the cdn css of font awesome fonts to the html template of the main page */}
+        <span className="fa fa-plus" title="plus" aria-hidden="true"></span>
+        </Button>
         </Col>
         </Row>
         <Row>
         <Col md="9">
-        <CardModal modal={this.state.modal} onToggle={this.onToggle} />
-        <Card>
-        <Form onSubmit={this.submitCard}>
-        <CardHeader>
-          <FormGroup >
-            <Input
-              value={this.state.title}
-              placeholder="Card Title..."
-              onChange={(e) => this.setState({title: e.target.value})}
-              required />
-            </FormGroup>
-          </CardHeader>
-          <CardBody>
-          <FormGroup >
-          <Input
-            value={this.state.imgurl}
-            placeholder="Image url..."
-            onChange={(e) => this.setState({imgurl: e.target.value})}
-            required />
-          <CardImg src={this.state.imgurl?this.state.imgurl:defaultCardImgUrl} style={imageStyle} className="img-thumbnail" alt={this.state.title} />
-          </FormGroup>
-          <FormGroup >
-          <Input
-            value={this.state.description}
-            placeholder="Card description..."
-            onChange={(e) => this.setState({description: e.target.value})}
-            required />
-          </FormGroup>
-          <Button color="success" type="submit"> Save Card </Button>
-          <Button onClick={this.resetForm}>Reset</Button>
-          </CardBody>
-        </Form>
-          </Card>
+        <CardModal modal={this.state.modal} currentCardData={currentCardData} imageStyle={imageStyle}
+          onToggle={this.onToggle} onSetParentsState={this.onSetParentsState}
+          submitCard={this.submitCard} resetForm={this.resetForm} >
+        </CardModal>
           </Col>
           </Row>
-          <h3>Cards</h3>
           {/*create a card deck. Then for each card put it on the deck with the normal look*/}
               <CardDeck>
               {this.props.cards.map((card,id) => (
