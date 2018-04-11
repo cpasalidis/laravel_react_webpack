@@ -21,6 +21,7 @@ class CardContainer extends Component {
 
   resetForm = () => {
     this.setState({title: "",description: "",imgurl:"", updateCardId: null,
+    card_status_id:0,
     modal: false});
   }
 
@@ -36,12 +37,14 @@ class CardContainer extends Component {
   
   submitCard = (e) => {
     e.preventDefault();
-    if (this.state.updateCardId === null) {
-      this.props.addCard(this.state.title,this.state.description,this.state.imgurl)
-        .then(this.resetForm);
-    } else {
-      this.props.updateCard(this.state.updateCardId, this.state.title,this.state.description,this.state.imgurl)
-        .then(this.resetForm);
+    if (this.state.card_status_id>0) {
+      if (this.state.updateCardId === null) {
+        this.props.addCard(this.state.title,this.state.description,this.state.imgurl,this.state.card_status_id)
+          .then(this.resetForm);
+      } else {
+        this.props.updateCard(this.state.updateCardId, this.state.title,this.state.description,this.state.imgurl,this.state.card_status_id)
+          .then(this.resetForm);
+      }
     }
     this.resetForm();
   }
@@ -67,10 +70,10 @@ class CardContainer extends Component {
       const STATUS_ICONS=[
         <Badge color="primary"></Badge>, //status id 0
         <Badge color="primary"><span className="fa fa-check" title="check" aria-hidden="true"/></Badge>, //status id 1
-        <Badge color="success"><span className="fa fa-check-circle" title="check-circle" aria-hidden="true"/></Badge>, //status id 1
-        <Badge color="primary"><span className="fa fa-clock" title="clock" aria-hidden="true"/></Badge>, //status id 1
-        <Badge color="primary"><span className="fa fa-pause" title="pause" aria-hidden="true"/></Badge>, //status id 1
-        <Badge color="danger"><span className="fa fa-trash-alt" title="trash-alt" aria-hidden="true"/></Badge>, //status id 1        
+        <Badge color="success"><span className="fa fa-check-circle" title="check-circle" aria-hidden="true"/></Badge>, //status id 2
+        <Badge color="primary"><span className="fa fa-clock" title="clock" aria-hidden="true"/></Badge>, //status id 3
+        <Badge color="primary"><span className="fa fa-pause" title="pause" aria-hidden="true"/></Badge>, //status id 4
+        <Badge color="danger"><span className="fa fa-trash" title="trash" aria-hidden="true"/></Badge>, //status id 5        
       ];
       return (
         <div>
@@ -132,11 +135,11 @@ class CardContainer extends Component {
       fetchCards: () => {
           dispatch(cards.fetchCards());
         },
-      addCard: (title,description,imgurl) => {
-        return dispatch(cards.addCard(title,description,imgurl));
+      addCard: (title,description,imgurl,card_status_id) => {
+        return dispatch(cards.addCard(title,description,imgurl,card_status_id));
       },
-      updateCard: (id, title,description,imgurl) => {
-        return dispatch(cards.updateCard(id, title,description,imgurl));
+      updateCard: (id, title,description,imgurl,card_status_id) => {
+        return dispatch(cards.updateCard(id, title,description,imgurl,card_status_id));
       },
       deleteCard: (id) => {
         dispatch(cards.deleteCard(id));

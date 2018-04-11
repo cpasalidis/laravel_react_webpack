@@ -11,11 +11,11 @@ const initialState = {cards:[],cardStatuses:[]};
 
       case 'FETCH_CARDS':
         let newFetchedCards = [...state.cards, ...action.cards];
-        return {cards:newFetchedCards};
+        return {cards:newFetchedCards,cardStatuses:[...state.cardStatuses]};
 
       case 'ADD_CARD':
         let newAddedCards = [...state.cards, action.card];
-        return {cards:newAddedCards};
+        return {cards:newAddedCards,cardStatuses:[...state.cardStatuses]};
   
       case 'UPDATE_CARD':
         let cardToUpdate = cardList[action.index]
@@ -24,11 +24,11 @@ const initialState = {cards:[],cardStatuses:[]};
         cardToUpdate.imgurl = action.card.imgurl;
         cardToUpdate.card_status_id = action.card.card_status_id;
         cardList.splice(action.index, 1, cardToUpdate);
-        return {cards:cardList};
+        return {cards:cardList,cardStatuses:[...state.cardStatuses]};
   
       case 'DELETE_CARD':
         cardList.splice(action.index, 1);
-        return {cards:cardList};
+        return {cards:cardList,cardStatuses:[...state.cardStatuses]};
   
       default:
         return state;

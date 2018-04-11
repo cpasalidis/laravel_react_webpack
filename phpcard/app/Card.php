@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Card extends Model
 {
     //
-    protected $fillable = ['title','description','imgurl'];
+    protected $fillable = ['title','description','imgurl','card_status_id'];
 
     /** 
      * Get the status of this card

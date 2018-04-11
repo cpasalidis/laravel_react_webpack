@@ -23,6 +23,7 @@ class CardsController extends Controller
         $this->validate($request, [
             'title' => 'required|unique:cards|max:255',
             'description' => 'required',
+            'card_status_id' => 'required|min:1'
         ]);
         $card = Card::create($request->all());
         return response()->json($card, 201);

@@ -17,7 +17,17 @@ class CardModal extends React.Component {
       cardStatuses,
       submitCard,resetForm,className,imageStyle} = this.props;
     const defaultCardImgUrl='http://icons.iconarchive.com/icons/iconsmind/outline/128/Guitar-icon.png';
-
+    //https://stackoverflow.com/questions/36743041/font-awesome-icon-in-select-option
+    //https://stackoverflow.com/questions/35166758/react-javascript-displaying-decoding-unicode-characters
+    //Badge is a span, not allowed inside option
+    const STATUS_ICONS=[
+      '', //status id 0
+      "\uf00c", //status id 1 (fa-check)
+      "\uf058", //status id 2 (fa-check-circle)
+      "\uf017", //status id 3 (fa-clock)
+      "\uf04c", //status id 4 (fa-pause)
+      "\uf1f8", //status id 5 (fa-trash)        
+    ];
     return (
       <div>
         <Modal isOpen={modal} toggle={onToggle} className={className}>
@@ -59,11 +69,12 @@ class CardModal extends React.Component {
             value={currentCardData.card_status_id}
             placeholder="Card Status..."
             onChange={(e) => onSetParentsState({card_status_id: e.target.value})}
+            style={{fontFamily: 'Helvetica, FontAwesome'}}
             required> 
             <option key={0} value={0}>Please select a status</option> 
             {
-                this.props.cardStatuses.length > 0 && this.props.cardStatuses.map((cardStatus,id) => (
-                <option key={cardStatus.id} value={cardStatus.id}>{cardStatus.description}</option>  
+                cardStatuses.length > 0 && cardStatuses.map((cardStatus,id) => (
+                <option key={cardStatus.id} value={cardStatus.id}>{cardStatus.description+' ' + STATUS_ICONS[parseInt(cardStatus.id,10)||0]}</option>  
             ))}
             </Input>
           { (currentCardData.card_status_id > 0) && <FormFeedback>{'Please select a status'}</FormFeedback> }

@@ -43,9 +43,9 @@ export const fetchCards = () => {
   }
 }
 
-export const addCard = (title,description,imgurl) => {
+export const addCard = (title,description,imgurl,card_status_id) => {
   let headers = getHeaders();
-  let body = JSON.stringify({title,description,imgurl, });
+  let body = JSON.stringify({title,description,imgurl,card_status_id, });
   return dispatch => {
   return fetch("/api/cards/", {headers,credentials: 'same-origin', method: "POST", body})
   .then(res => res.json())
@@ -58,11 +58,11 @@ export const addCard = (title,description,imgurl) => {
   } //of dispatch
 } //of addCard
   
-  export const updateCard = (index, title,description,imgurl ) => {
+  export const updateCard = (index, title,description,imgurl,card_status_id ) => {
     return (dispatch, getState) => {
 
       let headers = getHeaders();
-      let body = JSON.stringify({title,description,imgurl, });
+      let body = JSON.stringify({title,description,imgurl,card_status_id, });
       let cardId = getState().cards.cards[index].id;
       return fetch(`/api/cards/${cardId}/`, {headers,credentials: 'same-origin', method: "PUT", body})
         .then(res => res.json())
