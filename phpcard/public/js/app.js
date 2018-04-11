@@ -48511,10 +48511,12 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCardStatusesAndCards", function() { return fetchCardStatusesAndCards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCards", function() { return fetchCards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addCard", function() { return addCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCard", function() { return updateCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCard", function() { return deleteCard; });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var getHeaders = function getHeaders() {
   var token = document.head.querySelector('meta[name="csrf-token"]').content;
@@ -48525,6 +48527,29 @@ var getHeaders = function getHeaders() {
   };
   return headers;
 };
+
+var fetchCardStatusesAndCards = function fetchCardStatusesAndCards() {
+  return function (dispatch) {
+    var headers = getHeaders();
+    return Promise.all([fetch("/api/card_statuses/", { headers: headers, credentials: 'same-origin' }), fetch("/api/cards/", { headers: headers, credentials: 'same-origin' })]).then(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          resStatus = _ref2[0],
+          resCard = _ref2[1];
+
+      Promise.all([resStatus.json(), resCard.json()]).then(function (_ref3) {
+        var _ref4 = _slicedToArray(_ref3, 2),
+            cardStatuses = _ref4[0],
+            cards = _ref4[1];
+
+        return dispatch({
+          type: 'FETCH_CARDSTATUSES_CARDS',
+          cardStatuses: cardStatuses,
+          cards: cards
+        }); //of dispatch to reducers
+      }); //of inner Promise.all for json() in both promises
+    }); //of first Promise.all, for http request
+  }; //of dispatch...
+}; //of fetchCardStatusesAndCards
 
 var fetchCards = function fetchCards() {
   return function (dispatch) {
@@ -48560,7 +48585,7 @@ var updateCard = function updateCard(index, title, description, imgurl) {
 
     var headers = getHeaders();
     var body = JSON.stringify({ title: title, description: description, imgurl: imgurl });
-    var cardId = getState().cards[index].id;
+    var cardId = getState().cards.cards[index].id;
     return fetch("/api/cards/" + cardId + "/", { headers: headers, credentials: 'same-origin', method: "PUT", body: body }).then(function (res) {
       return res.json();
     }).then(function (card) {
@@ -48577,7 +48602,7 @@ var deleteCard = function deleteCard(index) {
   return function (dispatch, getState) {
 
     var headers = getHeaders();
-    var cardId = getState().cards[index].id;
+    var cardId = getState().cards.cards[index].id;
 
     return fetch("/api/cards/" + cardId + "/", { headers: headers, credentials: 'same-origin', method: "DELETE" }).then(function (res) {
       if (res.ok) {
@@ -49314,32 +49339,40 @@ var cardApp = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["combineReducers"])({
 /* harmony export (immutable) */ __webpack_exports__["a"] = cards;
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var initialState = [];
+var initialState = { cards: [], cardStatuses: [] };
 
 function cards() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
-  var cardList = state.slice();
+  var cardList = [].concat(_toConsumableArray(state.cards));
 
   switch (action.type) {
+    case 'FETCH_CARDSTATUSES_CARDS':
+      var fetchedCards = [].concat(_toConsumableArray(state.cards), _toConsumableArray(action.cards));
+      var fetchedCardStatuses = [].concat(_toConsumableArray(state.cardStatuses), _toConsumableArray(action.cardStatuses));
+      return { cards: fetchedCards, cardStatuses: fetchedCardStatuses };
+
     case 'FETCH_CARDS':
-      return [].concat(_toConsumableArray(state), _toConsumableArray(action.cards));
+      var newFetchedCards = [].concat(_toConsumableArray(state.cards), _toConsumableArray(action.cards));
+      return { cards: newFetchedCards };
 
     case 'ADD_CARD':
-      return [].concat(_toConsumableArray(state), [action.card]);
+      var newAddedCards = [].concat(_toConsumableArray(state.cards), [action.card]);
+      return { cards: newAddedCards };
 
     case 'UPDATE_CARD':
       var cardToUpdate = cardList[action.index];
       cardToUpdate.title = action.card.title;
       cardToUpdate.description = action.card.description;
       cardToUpdate.imgurl = action.card.imgurl;
+      cardToUpdate.card_status_id = action.card.card_status_id;
       cardList.splice(action.index, 1, cardToUpdate);
-      return cardList;
+      return { cards: cardList };
 
     case 'DELETE_CARD':
       cardList.splice(action.index, 1);
-      return cardList;
+      return { cards: cardList };
 
     default:
       return state;
@@ -70499,7 +70532,7 @@ var CardContainer = function (_Component) {
   _createClass(CardContainer, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.fetchCards();
+      this.props.fetchCardStatusesAndCards();
     }
   }, {
     key: 'render',
@@ -70618,12 +70651,12 @@ var CardContainer = function (_Component) {
             },
             __self: this
           }, '__self', this),
-          this.props.cards.map(function (card, id) {
+          this.props.cards.length > 0 && this.props.cards.map(function (card, id) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_4_reactstrap__["b" /* Card */],
               _defineProperty({ key: "card_" + id, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 90
+                  lineNumber: 91
                 },
                 __self: _this2
               }, '__self', _this2),
@@ -70632,7 +70665,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 91
+                    lineNumber: 92
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70640,7 +70673,7 @@ var CardContainer = function (_Component) {
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_reactstrap__["g" /* CardImg */], _defineProperty({ src: card.imgurl, style: imageStyle, alt: card.title, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 92
+                  lineNumber: 93
                 },
                 __self: _this2
               }, '__self', _this2)),
@@ -70649,7 +70682,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 93
+                    lineNumber: 94
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70658,7 +70691,7 @@ var CardContainer = function (_Component) {
                   _defineProperty({
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 94
+                      lineNumber: 95
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70670,7 +70703,7 @@ var CardContainer = function (_Component) {
                       return _this2.selectForEdit(id);
                     }, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 95
+                      lineNumber: 96
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70682,7 +70715,7 @@ var CardContainer = function (_Component) {
                       return _this2.props.deleteCard(id);
                     }, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 96
+                      lineNumber: 97
                     },
                     __self: _this2
                   }, '__self', _this2),
@@ -70694,7 +70727,7 @@ var CardContainer = function (_Component) {
                 _defineProperty({
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 98
+                    lineNumber: 99
                   },
                   __self: _this2
                 }, '__self', _this2),
@@ -70712,12 +70745,16 @@ var CardContainer = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    cards: state.cards
+    cards: state.cards.cards,
+    cardStatuses: state.cards.cardStatuses
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchCardStatusesAndCards: function fetchCardStatusesAndCards() {
+      dispatch(__WEBPACK_IMPORTED_MODULE_3__actions__["a" /* cards */].fetchCardStatusesAndCards());
+    },
     fetchCards: function fetchCards() {
       dispatch(__WEBPACK_IMPORTED_MODULE_3__actions__["a" /* cards */].fetchCards());
     },

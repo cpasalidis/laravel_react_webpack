@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Card;
+use App\CardStatus;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,3 +38,5 @@ Route::post('cards','CardsController@store');
 Route::put('cards/{card}','CardsController@update');
  
 Route::delete('cards/{card}', 'CardsController@delete');
+
+Route::get('card_statuses','CardStatusesController@index');

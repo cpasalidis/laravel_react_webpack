@@ -24,7 +24,7 @@ class CardContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCards();
+    this.props.fetchCardStatusesAndCards();
   }
 
   selectForEdit = (cardIdx) => {
@@ -86,7 +86,8 @@ class CardContainer extends Component {
           </Row>
           {/*create a card deck. Then for each card put it on the deck with the normal look*/}
               <CardDeck>
-              {this.props.cards.map((card,id) => (
+              {
+                this.props.cards.length > 0 && this.props.cards.map((card,id) => (
                 <Card key={"card_"+id}>
                   <CardHeader>{card.title}</CardHeader>
                   <CardImg src={card.imgurl} style={imageStyle} alt={card.title}/>
@@ -107,12 +108,16 @@ class CardContainer extends Component {
   
   const mapStateToProps = state => {
     return {
-      cards: state.cards,
+      cards: state.cards.cards,
+      cardStatuses:state.cards.cardStatuses,
     }
   }
   
   const mapDispatchToProps = dispatch => {
     return {
+      fetchCardStatusesAndCards: () => {
+        dispatch(cards.fetchCardStatusesAndCards());
+      },
       fetchCards: () => {
           dispatch(cards.fetchCards());
         },

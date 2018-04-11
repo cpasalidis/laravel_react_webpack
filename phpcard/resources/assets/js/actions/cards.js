@@ -9,6 +9,26 @@ const getHeaders = () => {
   return headers;
 }
 
+export const fetchCardStatusesAndCards = () => {
+  return dispatch => {
+    let headers = getHeaders();
+    return Promise.all([
+      fetch("/api/card_statuses/", {headers,credentials: 'same-origin' }),
+      fetch("/api/cards/", {headers,credentials: 'same-origin' })
+    ])
+      .then(([resStatus,resCard]) => {
+        Promise.all([resStatus.json(),resCard.json()])
+      .then(([cardStatuses,cards]) => {
+        return dispatch({
+          type: 'FETCH_CARDSTATUSES_CARDS',
+          cardStatuses,
+          cards
+        }) //of dispatch to reducers
+      }) //of inner Promise.all for json() in both promises
+    }) //of first Promise.all, for http request
+  } //of dispatch...
+} //of fetchCardStatusesAndCards
+
 export const fetchCards = () => {
   return dispatch => {
     let headers = getHeaders();
@@ -43,7 +63,7 @@ export const addCard = (title,description,imgurl) => {
 
       let headers = getHeaders();
       let body = JSON.stringify({title,description,imgurl, });
-      let cardId = getState().cards[index].id;
+      let cardId = getState().cards.cards[index].id;
       return fetch(`/api/cards/${cardId}/`, {headers,credentials: 'same-origin', method: "PUT", body})
         .then(res => res.json())
         .then(card => {
@@ -60,7 +80,7 @@ export const deleteCard = index => {
   return (dispatch, getState) => {
 
     let headers = getHeaders();
-    let cardId = getState().cards[index].id;
+    let cardId = getState().cards.cards[index].id;
 
     return fetch(`/api/cards/${cardId}/`, {headers, credentials: 'same-origin',method: "DELETE"})
       .then(res => {
