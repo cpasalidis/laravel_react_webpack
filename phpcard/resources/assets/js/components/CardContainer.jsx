@@ -14,6 +14,7 @@ class CardContainer extends Component {
       title: "",
       description: "",
       imgurl: "",
+      card_status_id:0,
       updateCardId: null,
       modal:false,
     }  
@@ -61,6 +62,7 @@ class CardContainer extends Component {
         title:this.state.title,
         description:this.state.description,
         imgurl:this.state.imgurl,
+        card_status_id:this.state.card_status_id,
         updateCardId:this.state.updateCardId};
       return (
         <div>
@@ -79,6 +81,7 @@ class CardContainer extends Component {
         <Row>
         <Col md="9">
         <CardModal modal={this.state.modal} currentCardData={currentCardData} imageStyle={imageStyle}
+          cardStatuses={this.props.cardStatuses}
           onToggle={this.onToggle} onSetParentsState={this.onSetParentsState}
           submitCard={this.submitCard} resetForm={this.resetForm} >
         </CardModal>

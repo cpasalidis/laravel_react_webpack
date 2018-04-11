@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormFeedback } from 'reactstrap';
 import {Form,FormGroup,Input} from 'reactstrap';
 import { Card, CardImg, CardTitle, CardText, CardDeck,CardHeader,CardFooter,CardColumns,CardGroup,
   CardSubtitle, CardBody } from 'reactstrap';
@@ -13,7 +13,9 @@ class CardModal extends React.Component {
   }
 
   render(props) {
-    const {modal,onToggle,onSetParentsState,currentCardData,submitCard,resetForm,className,imageStyle} = this.props;
+    const {modal,onToggle,onSetParentsState,currentCardData,
+      cardStatuses,
+      submitCard,resetForm,className,imageStyle} = this.props;
     const defaultCardImgUrl='http://icons.iconarchive.com/icons/iconsmind/outline/128/Guitar-icon.png';
 
     return (
@@ -48,6 +50,23 @@ class CardModal extends React.Component {
             placeholder="Card description..."
             onChange={(e) => onSetParentsState({description: e.target.value})}
             required />
+          </FormGroup>
+          <FormGroup >
+          <Input 
+            id="statusSelect"
+            type="select"
+            valid={currentCardData.card_status_id > 0}
+            value={currentCardData.card_status_id}
+            placeholder="Card Status..."
+            onChange={(e) => onSetParentsState({card_status_id: e.target.value})}
+            required> 
+            <option key={0} value={0}>Please select a status</option> 
+            {
+                this.props.cardStatuses.length > 0 && this.props.cardStatuses.map((cardStatus,id) => (
+                <option key={cardStatus.id} value={cardStatus.id}>{cardStatus.description}</option>  
+            ))}
+            </Input>
+          { (currentCardData.card_status_id > 0) && <FormFeedback>{'Please select a status'}</FormFeedback> }
           </FormGroup>
           <Button color="success" type="submit"> Save Card </Button>
           <Button onClick={resetForm}>Reset</Button>
